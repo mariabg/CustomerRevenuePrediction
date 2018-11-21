@@ -2,6 +2,11 @@ import sys
 import glob
 import pandas as pd
 
+# bash commands for splitting a huge dataset into several smaller ones
+# split -l 100000 train_v2.csv
+# echo 'channelGrouping,customDimensions,date,device,fullVisitorId,geoNetwork,hits,socialEngagementType,totals,trafficSource,visitId,visitNumber,visitStartTime' > headerfile
+# for csv in *.csv; do cat headerfile $csv > tmpfile2; mv tmpfile2 $csv; done
+# rm headerfile
 
 def main ():
     allFiles = glob.glob("*.csv")
@@ -22,11 +27,5 @@ def main ():
         print(misc.shape)
         with open('misc.csv', 'a') as f:
             misc.to_csv(f, header=False)
-
-    # Select an specific group, like a country
-    # df = df.loc[df['country'] == 'Spain']
-
-    # df.to_csv('cleanedData.csv', encoding='utf-8')
-
 
 main()
